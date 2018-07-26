@@ -35,7 +35,7 @@
 #
 # Contact: khmer-project@idyll.org
 """Setup for khmer project."""
-
+from __future__ import print_function
 import ez_setup
 
 import glob
@@ -71,7 +71,7 @@ try:
     cy_ext = 'pyx'
     print('*** NOTE: Found Cython, extension files will be '
           'transpiled if this is an install invocation.',
-          file=sys.stderr)
+		  file=sys.stderr)
 except ImportError:
     from setuptools import Extension as CyExtension
     HAS_CYTHON = False

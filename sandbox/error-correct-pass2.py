@@ -41,6 +41,7 @@ Output sequences will be put in inputfile.corr.
 
 Use '-h' for parameter help.
 """
+#from __future__ import print_function, unicode_literals
 import sys
 import os
 import screed
@@ -88,7 +89,6 @@ def main():
 
     print('loading counts')
     ht = Countgraph.load(args.counts_table)
-
     aligner = khmer.ReadAligner(ht,
                                 args.trusted_cov,
                                 args.bits_theta)
@@ -103,7 +103,8 @@ def main():
     n_corrected = 0
     for n, read in enumerate(screed.open(args.readfile)):
         if n % 10000 == 0:
-            print('...', n, n_corrected, file=sys.stderr)
+            sys.stdout.write('...', n, n_corrected)
+            #print('...', n, n_corrected, file=sys.stderr)
         seq = read.sequence.replace('N', 'A')
 
         # build the alignment...
